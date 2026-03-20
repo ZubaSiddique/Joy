@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 <title>Eid Greeting</title>
 
 <style>
@@ -17,7 +19,7 @@ body {
     font-family: 'Dancing Script', cursive;
 }
 
-/* Curtains (HIDDEN INITIALLY) */
+/* Curtains */
 .curtain {
     position: fixed;
     top: 0;
@@ -60,53 +62,53 @@ button {
 #secondScreen {
     display: none;
     position: absolute;
-     
-          width: 100%;
-          height: 100%;
-   background: linear-gradient(to top,#1A1A1A,#0B1D3A,#1C3F60); /* SAME as body gradient */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,#1A1A1A,#0B1D3A,#1C3F60);
     padding: 50px 0;
-font-family: 'Dancing Script', cursive;
-   
-    
+    font-family: 'Dancing Script', cursive;
 }
 
 #secondScreen h1 {
     color: gold;
     text-shadow: 0 0 12px gold;
 }
+
 @media(max-width:420px){
-    #secondScreen{
-       
-        
-    }
     #secondScreen h1 {
-         top: 200px; 
+        padding-top: 80px;
         width:90%;
         margin: 0 auto;
     }
 }
+
 /* Final Image */
 #finalImage {
     display: none;
-    position: absolute;
-   
+    position: fixed;   /* 🔥 important fix */
+    top: 0;
+    left: 0;
+    width: 100vw;      /* 🔥 full width */
+    height: 100vh;     /* 🔥 full height */
 }
 
 #finalImage img {
-    width: 100%;
-height: 100%;
-    border-radius: 15px;
+    overflow: hidden;
+    width: 102%;
+    height: 100%;
+    object-fit: cover; /* 🔥 perfect fit for mobile */
 }
 
 /* Stars */
 .star {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: white;
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 8px currentColor;
     clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
     animation: twinkle 2s infinite alternate;
 }
+
 @keyframes twinkle {
     from {opacity:0.2;}
     to {opacity:1;}
@@ -130,29 +132,35 @@ height: 100%;
 
 <!-- Second Screen -->
 <div id="secondScreen">
-    <h1>Eid ul Fitr Mubarik,Dear <span id="userName"></span> 🌙</h1>
+    <h1>Wishing a very Beautiful and Blessed Eid ul Fitr Mubarik, Dear <span id="userName"></span> 🌙</h1>
     <p>To you and your family 🤍</p>
     <div class="arabic">تقبل الله منا ومنكم</div>
 </div>
 
 <!-- Final Image -->
 <div id="finalImage">
-    <!-- 🔴 PASTE YOUR IMAGE URL HERE -->
     <img src="eid wish.jpeg" alt="Eid Wish">
 </div>
 
 <script>
 // Stars
+let colors = ["gold", "#fff5a5", "#065f46", "#36064D", "#ffd1dc" ,"#D4AF37" ,"#9B0F06"];
+
 for(let i=0;i<80;i++){
     let star=document.createElement("div");
     star.classList.add("star");
+
+    // ⭐ THIS LINE WAS MISSING
+    star.style.background = colors[Math.floor(Math.random()*colors.length)];
+
     star.style.top=Math.random()*100+"vh";
     star.style.left=Math.random()*100+"vw";
     star.style.animationDelay=Math.random()*2+"s";
+
     document.body.appendChild(star);
 }
 
-// Start
+// Start function
 function start(){
     let name=document.getElementById("name").value;
     if(name===""){ alert("Enter your name!"); return;}
@@ -181,7 +189,7 @@ function showSecond(name){
 
     setTimeout(()=> {
         startCurtain();
-    },10000);
+    },4000);  // 🔥 CHANGED from 10000 → 4000 (4 seconds)
 }
 
 // Curtain transition
@@ -189,7 +197,7 @@ function startCurtain(){
     let left=document.querySelector(".left");
     let right=document.querySelector(".right");
 
-    // First close curtains
+    // Close curtains
     left.style.transform="translateX(0)";
     right.style.transform="translateX(0)";
 
@@ -200,7 +208,7 @@ function startCurtain(){
         // Open curtains
         left.style.transform="translateX(-100%)";
         right.style.transform="translateX(100%)";
-    },1500); // Wait for curtain close animation
+    },1500);
 }
 </script>
 
