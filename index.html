@@ -79,6 +79,10 @@ button {
         padding-top: 80px;
         width:90%;
         margin: 0 auto;
+        font-size:30px;
+    }
+    #secondScreen p{
+        font-size: 20px;
     }
 }
 
@@ -93,10 +97,18 @@ button {
 }
 
 #finalImage img {
-    overflow: hidden;
+   
     width: 102%;
     height: 100%;
     object-fit: cover; /* 🔥 perfect fit for mobile */
+}
+@media(max-width:420px){
+    #finalImage img{
+        width: 100vw;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
 }
 
 /* Stars */
@@ -139,7 +151,7 @@ button {
 
 <!-- Final Image -->
 <div id="finalImage">
-    <img src="eid wish.jpeg" alt="Eid Wish">
+    <img src="eid (1).jpeg" alt="Eid Wish">
 </div>
 
 <script>
